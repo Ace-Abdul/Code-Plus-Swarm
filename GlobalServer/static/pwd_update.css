@@ -1,0 +1,162 @@
+/* 
+@author: Home Network Defense Team
+*/
+@import url('https://fonts.googleapis.com/css?family=EB+Garamond:400,400i,700');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700');
+
+
+
+
+html, body{
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+  
+#pageTitle {
+    /* background-color: #1507cf;
+    color: white;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 6rem;
+    line-height: 6rem; */
+    
+    background-color:#012169;
+    background-repeat: no-repeat;
+    color: white;
+    text-align: left;
+    font-family: 'EB Garamond';
+    font-size: 3rem;
+    width: auto;
+    height: 70px;
+    padding-left:15px;
+    line-height: 70px;
+    margin-top:0;
+    min-width:960px;
+}
+
+#feed{
+    position: relative;
+    text-align: left;
+    font-family: 'Open Sans';
+    font-size: 12px;
+}
+
+/*#password:blur ~ #feed{
+    visibility: visible;
+    border-radius: 6px;
+
+}*/
+#pop {
+    
+    position: absolute;
+    visibility: hidden;
+    color: #012169;
+    background-color: white;
+    width: 320px;
+    height: 90px;
+    right: 20.3%;
+    top: 14.9%;
+}
+#pop::after{
+    content:"";
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    border: 5px solid #012169;
+    border-color: transparent white transparent transparent;
+}
+
+#pageTitle>span{
+    padding-left: 25px;
+}
+#logo {
+    height: auto;
+    width: 100px;
+    padding-bottom: 17px;  
+}
+
+.bi{
+    color: white;
+    font-family: 'Open Sans';
+    font-size: 1.5rem;
+    padding-left: 20px;
+}
+
+#matching{
+    font-family: 'Open Sans'
+}
+
+.inputForms {
+    background-color: lightgray;
+    text-align: center;
+    font-family: 'Open Sans';
+}
+
+#text:hover {
+    background-color: #b3b3b3;
+}
+#password:hover , #confirm:hover{
+    background-color: #b3b3b3;
+}
+
+#text {
+    width: 200px;
+}
+#password {
+    width: 200px;
+}
+
+#confirm {
+    width: 200px;
+}
+
+#changeBtn:hover{
+    background-color: white;
+    color:#012169;
+}
+
+#changeBtn {
+    background-color: #012169;
+    color: white;
+    border-radius: 12px;
+    font-size: 1.5rem;
+}
+
+.bi:hover{
+    color: #0084ff;
+    text-decoration: none;
+}
+
+.invalid:before {
+    position: absolute;
+    left: 15px;
+    content: "✖";
+}
+
+.valid:before {
+    position: absolute;
+    left: 15px;
+    content: "✔";
+}
+
+li {
+    list-style-type: none;
+}
+footer {
+    display: block;
+    position: fixed;
+    left: 0;
+    right:0;
+    bottom:0;
+    margin-top: 6em;
+    width: 100%;
+    text-align: center;
+    line-height: 5rem;
+    color: white;
+    background-color: #012169;
+    width: 100%;
+    font-family: 'EB Garamond';
+    font-size: 1.75rem;
+}

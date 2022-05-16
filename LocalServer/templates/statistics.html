@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <title>Your Network Activity</title>
+    <meta charset="UTF-8">
+    <meta name="author" content= "Home Network Defense Team">
+    <meta name="description" content= "Display statistics for blocks">
+    <meta name="keywords" content= "HTML, CSS">
+    <meta http-equiv="refresh" content="60">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='stat_stylesheet.css') }}">
+</head>
+
+<header>
+    <img src='static/DukeLogo.png' id='logo'>
+	
+    <h1 id="pageTitle">
+        <div class="center">
+        Network Activity
+        </div>
+    </h1>
+
+</header>
+
+<body>
+	<div class="label">
+	<br>
+		Number of Total Blocked Attacks
+		<br>
+	</div>
+
+
+	<div class="background">
+	<!--number of blocks table-->
+	<div class="numTable">
+		<br><br>
+		<table class ="dataTable" border='7rem'>
+             <tr class="tableHeaders">
+                <th class="headerName">LAST DAY</th>
+                <th class="headerName">LAST 5 DAYS</th>
+                <th class="headerName">LAST MONTH</th>
+            </tr>
+			<tr>
+				<td>{{dayBlockNum}}</td>
+				<td>{{fiveDayBlockNum}}</td>
+				<td>{{monthBlockNum}}</td>
+			</tr>
+		</table>
+		<br><br><br>
+	</div>
+	</div>
+	<!--end of number of blocks table-->
+
+	<!--top five attackers for last day-->
+	<div class="label">
+		Top Five Most Frequent Attackers 
+	</div>
+	<div class="label">
+		 <i>(last day)</i>
+		<br>
+	</div>
+
+	<div class="background">
+
+	<div class="numTable">
+		<br><br>
+		<table class ="dataTable" border='7rem'>
+             <tr class="tableHeaders">
+                <th class="headerName">IP ADDRESS</th>
+				<th class="headerName">LAST TIMESTAMP</th>
+                <th class="headerName">NUMBER OF ATTACKS</th>
+                <th class="headerName">COUNTRY</th>
+            </tr>
+
+				{% for itemNum in range(5) %}
+                    <tr>
+                        {% if top_ips_day[itemNum] is defined %}
+								<td>{{top_ips_day[itemNum][0]}}</td>
+                        {% else %}
+                            <td> – </td>
+                        {% endif %}
+
+						{% if top_ips_day[itemNum] is defined %}
+							<td>{{timestamp_dict[top_ips_day[itemNum][0]]}}</td>
+						{% else %}
+                            <td> – </td>
+                        {% endif %}
+
+						{% if top_ips_day[itemNum] is defined %}
+								<td>{{top_ips_day[itemNum][1]}}</td>
+                        {% else %}
+                            <td> – </td>
+                        {% endif %}
+						{% if top_ips_day[itemNum] is defined %}
+							<td>{{country_dict[top_ips_all[itemNum][0]]}}</td>
+						{% else %}
+                            <td> – </td>
+                        {% endif %}
+
+                    </tr>
+
+                {% endfor %}
+
+				</table>
+		<br><br><br>
+	</div>
+</div>			
+			
+	<!--end of second table-->
+	
+		<!--top five attackers for last 5 days-->
+	<div class="label">
+		Top Five Most Frequent Attackers 
+		<br>
+	</div>
+	<div class="label">
+		 <i>(last five days)</i>
+		<br>
+	</div>
+
+	<div class="background">
+
+	<div class="numTable">
+		<br><br>
+		<table class ="dataTable" border='7rem'>
+             <tr class="tableHeaders">
+                <th class="headerName">IP ADDRESS</th>
+				<th class="headerName">LAST  TIMESTAMP</th>
+                <th class="headerName">NUMBER OF ATTACKS</th>
+                <th class="headerName">COUNTRY</th>
+            </tr>
+
+				{% for itemNum in range(5) %}
+                    <tr>
+                        {% if top_ips_fivedays[itemNum] is defined %}
+								<td>{{top_ips_fivedays[itemNum][0]}}</td>
+                        {% else %}
+                            <td> – </td>
+                        {% endif %}
+						{% if top_ips_fivedays[itemNum] is defined %}
+							<td>{{timestamp_dict[top_ips_fivedays[itemNum][0]]}}</td>
+						{% else %}
+                            <td> – </td>
+                        {% endif %}
+						{% if top_ips_fivedays[itemNum] is defined %}
+								<td>{{top_ips_fivedays[itemNum][1]}}</td>
+                        {% else %}
+                            <td> – </td>
+                        {% endif %}
+						{% if top_ips_fivedays[itemNum] is defined %}
+							<td>{{country_dict[top_ips_fivedays[itemNum][0]]}}</td>
+						{% else %}
+                            <td> – </td>
+                        {% endif %}
+
+                    </tr>
+
+                {% endfor %}
+
+				</table>
+		<br><br><br>
+	</div>
+</div>			
+			
+	<!--end of third table-->
+
+	<!-- top five attackers in last month table -->
+	<div class="label">
+		Top Five Most Frequent Attackers
+	</div>
+	<div class="label">
+		 <i>(last month)</i>
+		<br>
+	</div>
+	
+
+	<div class="background">
+		<div class="numTable">
+		<br><br>
+	<table class ="dataTable" border='7rem'>
+             <tr class="tableHeaders">
+                <th class="headerName">IP ADDRESS</th>
+				<th class="headerName">LAST TIMESTAMP</th>
+                <th class="headerName">NUMBER OF ATTACKS</th>
+                <th class="headerName">COUNTRY</th>
+            </tr>
+
+				{% for itemNum in range(5) %}
+                    <tr>
+                        {% if top_ips_month[itemNum] is defined %}
+								<td>{{top_ips_month[itemNum][0]}}</td>
+                        {% else %}
+                            <td> – </td>
+                        {% endif %}
+
+						{% if top_ips_month[itemNum] is defined %}
+							<td>{{timestamp_dict[top_ips_month[itemNum][0]]}}</td>
+						{% else %}
+                            <td> – </td>
+                        {% endif %}
+
+						{% if top_ips_month[itemNum] is defined %}
+								<td>{{top_ips_month[itemNum][1]}}</td>
+                        {% else %}
+                            <td> – </td>
+                        {% endif %}
+						{% if top_ips_month[itemNum] is defined %}
+							<td>{{country_dict[top_ips_month[itemNum][0]]}}</td>
+						{% else %}
+                            <td> – </td>
+                        {% endif %}
+
+                    </tr>
+
+                {% endfor %}
+
+				</table>
+		<br><br><br>
+	</div>
+	</div>
+	<!-- end of top five attackers in last month table -->
+
+	<!-- start of multiple hits table -->
+
+	<div class="label">
+		Recent Attacks
+	</div>
+	<div class="label">
+		 <i>(up to one hundred)</i>
+		<br>
+	</div>
+	<br><br>
+	 <div class="background">
+		<div class="numTable">
+			<table class="fixed_header">
+				<thead>
+					<tr>
+					<th>IP ADDRESS</th>
+					<th>LAST TIMESTAMP</th>
+					<th>NUMBER OF ATTACKS</th>
+					<th>COUNTRY</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					{% for itemNum in range(100) %}
+					<tr>
+						{% if last100[itemNum] is defined %}
+								<td>{{last100[itemNum]}}</td>
+                        {% endif %}
+
+						{% if last100[itemNum] is defined %}
+							<td>{{timestamp_dict[last100[itemNum]]}}</td>
+                        {% endif %}
+
+						{% if last100[itemNum] is defined %}
+								<td>{{num_of_attacks[last100[itemNum]]}}</td>
+                        {% endif %}
+
+						{% if last100[itemNum] is defined %}
+							<td>{{country_dict[last100[itemNum]]}}</td>
+                        {% endif %}
+						
+					</tr>
+					  {% endfor %}
+					
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+
+	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+	<hr>
+	<br>
+	<pre>
+	{{html_str|safe}}
+	</pre>
+
+	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+	<hr>
+	<pre>
+		{{html_dayhits|safe}}
+	</pre>
+	<hr>
+
+		<div class = "changeInfo">
+		<br>
+		<!-- button to change username and password for user -->
+		<form class="changeInfoForm" action="/userstatistics" method = "post">
+			<input type="submit" id="changeBtn" value="Change Password"> 
+		</form>
+			
+		</div>
+
+	 <footer>Built by the Code+ Home Network Defense Team &copy 2021</footer>
+	
+</body>
+</html>

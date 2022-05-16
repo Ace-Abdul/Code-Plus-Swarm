@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <title>Update Password</title>
+    <meta charset="UTF-8">
+    <meta name="author" content= "Home Network Defense Team">
+    <meta name="description" content= "Allows user to change their username and password">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type= 'image/jpg' href='static/stingarImg.jpg'>
+    <meta name="keywords" content= "HTML, CSS">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='pwd_update.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1 id="pageTitle">
+            <img src='static/DukeLogo.png' id='logo'>
+            <span>Update Password</span>
+
+        {% if request.args.get('admin') %}
+            <a href="{{url_for('admin')}}" id='settings'> <span class="bi bi-person-fill"> Manage Users</span> </a>
+        {%else%}
+            <a href="{{url_for('StingarAdmin')}}" id='settings'> <span class="bi bi-person-fill"> Manage Users</span> </a>
+        {%endif%}
+    </h1>
+    </header>
+
+    <div class="inputForms">
+        <br>
+        <!-- form to change username and password -->
+        {% if request.args.get('admin') %}
+            <form class="updPassword" action="/update_password?admin=submitted" method = "post">
+            {%else%}
+            <form class="updPassword" action="?" method = "post">
+        {%endif%}
+        <form class="updPassword" action="?" method = "post">
+            <label for="username">Enter your new password:</label><br><br>
+            <input type="password" id="password" name="newPwd" onFocus = 'makeVisible()' onKeyUp = 'check()' placeholder="Password" required/><br><br>
+            <input type="password" id="confirm" name="confPwd" onBlur = 'match()' onKeyUp= "match()" placeholder="Confirm Password" required/><p id='message'></p> 
+            
+            <div class = 'tooltiptext' id='pop'>
+                <ul id='feed'>
+                    <li>12-20 characters</li>
+                    <li>At least one uppercase and lowercase character</li>
+                    <li>At least one number</li>
+                    <li>At least one special character</li>
+                    <li>No space(s)</li>
+                </ul>
+            </div> 
+            <p id='matching'><br></p>
+            <input type="submit" id="changeBtn" value="Save" onClick= 'return validate()'> <br> <br>
+        
+            {% if msg == "Password Updated" %}
+                <p style="color:green;">{{msg}}</p><br>
+            {% else %}
+                <p style="color:red;">{{msg}}</p><br>
+            {% endif %}
+        </form>
+    </div>
+
+    <script>
+        var re = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[\S]{1,20}$/;
+        var check1 = false;
+        var check2 = false;
+        var check3 = false;
+        var check4 = false;
+        var check5 = false;
+        var check6 = false;
+        function validate (){
+            if(check1 && check2 && check3 && check4 && check5 && check6) {return true;}
+            else {return false;}
+            
+        }
+        
+        function match(){
+            let newPwd = document.getElementById('password').value;
+            let confPwd = document.getElementById('confirm').value;
+            var matchingPwdMsg = document.getElementById('matching')
+            if (newPwd.length>0){    
+                if (newPwd==confPwd){
+                    matchingPwdMsg.innerText = "Passwords match";
+                    matchingPwdMsg.style.color = 'green';
+                    check5= true;
+                }
+                else{
+                    matchingPwdMsg.innerText = "Passwords don't match";
+                    matchingPwdMsg.style.color = 'red';
+                }}
+
+        }
+
+        function makeVisible () {
+            let pwd = document.getElementById('password');
+            let div = document.getElementById('pop');
+            div.style.visibility = 'visible';
+            pwd.onblur = () => {
+                div.style.visibility = 'hidden';
+            }
+        }
+        
+        function check(){
+            let newPwd = document.getElementById('password').value;
+            let confPwd = document.getElementById('confirm').value;
+            var box = document.getElementById('feed');
+            var feed = box.children;            
+            var length= /^.{12,20}$/;
+            var Case = /^(?=.*[a-z])(?=.*[A-Z])/;
+            var num = /^(?=.*[0-9])/;
+            var noS = /^(\S+)$/;
+            var specialChar = /^(?=.*[@_'"*.,!#$%^&\-+=()?<>/\\|]+)/
+            
+            
+            switch( length.test(newPwd) ){
+                case true:
+                    feed[0].style.color = 'green';
+                    feed[0].classList.add('valid');
+                    feed[0].classList.remove('invalid');
+                    check1= true;
+                    break;
+                case false:
+                    feed[0].style.color = 'red';
+                    feed[0].classList.add('invalid');
+                    feed[0].classList.remove('valid');
+                    break;
+            }
+            switch( Case.test(newPwd) ){
+                case true:
+                    check2= true;
+                    feed[1].style.color = 'green';
+                    feed[1].classList.add('valid');
+                    feed[1].classList.remove('invalid');
+                    break;
+                case false:
+                    feed[1].style.color = 'red';
+                    feed[1].classList.add('invalid');
+                    feed[1].classList.remove('valid');
+                    break;
+            }
+            switch( num.test(newPwd) ){
+                case true:
+                    check3= true;
+                    feed[2].style.color = 'green';
+                    feed[2].classList.add('valid');
+                    feed[2].classList.remove('invalid');
+                    break;
+                case false:
+                    feed[2].style.color = 'red';
+                    feed[2].classList.add('invalid');
+                    feed[2].classList.remove('valid');
+                    break;
+            }
+            switch( noS.test(newPwd) ){
+                case true:
+                    check4= true;    
+                    feed[4].style.color = 'green';
+                    feed[4].classList.add('valid');
+                    feed[4].classList.remove('invalid');
+                    break;
+                case false:
+                    feed[4].classList.add('invalid');
+                    feed[4].classList.remove('valid');
+                    feed[4].style.color = 'red';
+                    break;
+            }
+            switch(specialChar.test(newPwd)){
+                case true:
+                    check6 = true;
+                    feed[3].style.color = 'green';
+                    feed[3].classList.add('valid');
+                    feed[3].classList.remove('invalid');
+                    break;
+                case false:
+                    feed[3].style.color = 'red';
+                    feed[3].classList.add('invalid');
+                    feed[3].classList.remove('valid');
+                    break;
+            }
+            
+            /*if(newPwd.length==0){
+                feed[0].style.color = '#012169';
+                feed[1].style.color = '#012169';
+                feed[2].style.color = '#012169';
+                feed[3].style.color = '#012169';
+            } */
+        }
+            /*if(newPwd.length > 0 && confPwd.length > 0){
+                if (newPwd == confPwd) {
+                    document.getElementById('message').style.color = 'green';
+                    document.getElementById('message').innerHTML = '<br>Passwords Match';
+                } 
+                else {
+                        document.getElementById('message').style.color = 'red';
+                    document.getElementById('message').innerHTML = '<br>Passwords Do Not Match';
+                }
+        }
+            else{
+                document.getElementById('message').style.color = 'gray';
+                document.getElementById('message').innerHTML = '<br> Enter and confirm your new password';
+            }
+    }*/
+
+    </script>
+
+    <footer>Built by the Code+ Home Network Defense Team &copy 2021</footer>
+
+</body>
+
+
+</html>

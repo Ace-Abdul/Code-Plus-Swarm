@@ -1,0 +1,189 @@
+<!---
+Created on Wed Jul 14 2021
+
+@author: ace
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Admin Interface</title>
+    <!-- admin stylesheet-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin_stylesheet.css') }}">
+    <link rel="shortcut icon" type= 'image/jpg' href='static/stingarImg.jpg'>
+    <!-- bootstrap icons-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" >
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<header>
+    
+    <h1 id="pageTitle">
+        <img src='static/DukeLogo.png' id='logo'>
+        <span>Manage Co-admins</span>
+        <a href="{{url_for('admin')}}" id='settings'> <span class="bi bi-person-fill"> Manage Users</span> </a>
+    </h1>
+    
+</header>
+
+<body>
+    <div class="inputForms">
+    <br>
+    <!-- form to generate token given user email/descrip -->
+    <form class="genTokenForm" action="/settings" method = "post">
+        <label for="email">Enter a username/email, description, and password to add an admin:</label><br><br>
+        <input id="email" name="email" placeholder="Admin/admin@duke.edu" required ><br><br>
+        <input type="text" id="text" name="desc" placeholder="Description" required><br><br>
+        <input type="password" id="text" name="password" placeholder="Password" required><br><br>
+        <input type="password" id="text" name="ConfPassword" placeholder="Confirm Password" required><br><br>
+        <input type="submit" id="tokenBtn" value="Add admin"> <br><br>
+        {% if msg == "Admin Added" %}
+            <p style="color:green;">{{msg}}</p><br>
+        {% else %}
+            <p style="color:red;">{{msg}}</p><br>
+        {% endif %}
+    </form>
+    </div>
+
+
+    <br><br>
+        <div class = "respTableElem">
+        <!-- data table to keep track of existing tokens associated with emails, descriptions, and the date added -->
+        <table class ="dataTable" border='7rem'>
+            <tr class="tableHeaders">
+                <th>Email/Username</th>
+                <th>Description</th>
+                <th>Date added</th>
+                <!--<th>Password</th>-->
+                <th id='actions'style>Actions</th>
+            </tr>
+
+            {%for row in rows%}
+            <tr id="{{row[0]}}">
+                <form  action="{{ url_for('update_admin', row=row[0]) }}" method= "post" id='hiddenInpts'>
+                    <td>{{row[1]}}<input type='hidden' value='{{row[1]}}' name='email'> </td>
+                    <td>{{row[2]}}<input type='hidden' value='{{row[2]}}' name='desc'></td>
+                    <td>{{row[3]}}<input type='hidden' value='{{row[3]}}' name='date'></td>
+                    <!--<td>{{row[4]}}<input type='hidden' value='{{row[4]}}' name='pwd'></td>-->
+
+                    <td>
+                    <button type= "button" class='btn btn-default btn-sm' id ="editBtn_{{row[0]}}" onclick= "turnInput(this.id, '{{row[0]}}' )"">
+                        <span class="glyphicon glyphicon-pencil"></span> Edit
+                    </button>
+                </form>
+                        <form action="{{ url_for('delete_admin', row=row[0]) }}" method = "post">
+                                <button type="submit" class="btn btn-default btn-sm" id="delBtn">
+                                    <span class="glyphicon glyphicon-trash"></span> Trash 
+                                </button>                            
+                        </form> 
+                    </td>
+                </form>
+            </tr>
+
+            {%endfor%} 
+        </table>
+    </div>
+    
+    <script type='text/javascript'>
+        var dic = {}
+        function turnInput(btnId, rowid){
+            cnt=0;
+            var parent = document.getElementById(rowid);
+            var cells = parent.children;
+            let actions = cells[cells.length -1];
+            let editBox = actions.children[0];
+            editBox.onclick = () => {
+                cnt++;
+                console.log(cnt)
+                if (cnt == 1) {
+                    editBox.type ='submit';
+                    }
+            }
+            console.log(editBox)
+            let ediTxt = editBox.childNodes[2];
+            ediTxt.nodeValue = ' Save';
+
+            //console.log(cells)
+            for(let k=1; k < cells.length - 1;k++){
+                var td = cells[k];
+                td.childNodes[0].nodeValue = "";
+                let input = td.children[0];
+                input.type='text';
+            }
+
+            
+        }
+    
+            
+            /*
+            editBtn = document.getElementById(id);
+            //editBtn.type = 'submit';
+            editBtn.onclick = null;
+            //console.log(editBtn.parentElement)
+            console.log(editBtn);
+            //editBtn.parentElement.innerHTML = "<button type='submit' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-pencil'></span>Save</button>";
+
+            btnID= editBtn.id;
+            rowId = btnID.charAt(btnID.length-1);
+            cells = document.getElementById(rowId).children;
+            hidInputs = document.getElementById('test').children;
+    
+            names=['email', 'desc', 'date', 'token'];
+
+            for (i =0; i<cells.length-1; i++){
+                cell = cells[i];
+                txt = cell.textContent;
+                cell.innerHTML = "<input type ='text' style='text-align:left;'>";
+                hidInputs[i].value = txt
+                cell.children[0].setAttribute('value',txt);
+                cell.children[0].setAttribute('name',names[i]);
+                if (i == cells.length - 5){
+                    action = cells[i+1];
+                    console.log(cells[i]);
+                    console.log(action);
+                }
+            }*/
+            
+
+
+            
+            //console.log(editBtn.parentElement.parentElement.parentElement)
+                //allRows = document.getElementById('1').parentElement.children;
+                //console.log(allRows)
+    </script>
+    <!-- 
+    <script type="text/javascript">
+        function turnInput(){
+            object = document.getElementById("entry");
+            console.log(object)
+            cells = object.children;
+            for (i =0; i<cells.length-1; i++){
+                cell = cells[i]
+                //console.log(cell)
+                const txt = cell.textContent;
+                //console.log(txt)
+                cell.innerHTML = "<input type ='text' style='text-align:left;'>";
+                //console.log(cell)
+                cell.children[0].setAttribute('value',txt)
+            }
+            edit= document.getElementById('editBtn')
+            edit.innerHTML = "<span class='glyphicon glyphicon-pencil'></span> Save"
+
+            /*
+            console.log(email);
+            object.innerHTML = "<input id='emp'>";
+            object= document.getElementById('emp');
+            object.placeholder= email;
+            */
+            }
+    </script>
+            -->
+
+    <footer>Built by the Code+ Home Network Defense Team &copy 2021</footer>
+</body>
+</html>
+

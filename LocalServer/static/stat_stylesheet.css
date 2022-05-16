@@ -1,0 +1,235 @@
+/* 
+@author: Home Network Defense Team
+*/
+
+* {
+    box-sizing: border-box;
+}
+
+.header {
+    clear: both;
+    margin: auto;
+    font-family: 'EB Garamond';
+    font-size: 300%;
+    text-align: center;
+    
+}
+
+#pageTitle {
+    background-color: #012169;
+    color: white;
+    width: 100%;
+    text-align: center;
+    font-family: 'EB Garamond';
+    font-size: 300%;
+    font-weight: lighter;
+}
+
+/* centers page title/floats logo left for screen larger than 600px */
+@media (min-width: 600px) {
+    .center {
+        display: inline-block;
+        position: relative;
+        right: 56px; 
+    }
+}
+
+/* centers header alignment for mobile view */
+@media (max-width: 600px) {
+    .center {
+        display: inline-block;
+        position: relative;
+        /* right: 56px;  */
+    }
+}
+
+#logo {
+    height: auto;
+    width: 100px;
+    padding-top: 12px;
+    padding-bottom: 10px;
+    padding-left: 8px;
+    float: left;
+}
+
+ /* when screen is less than 600px wide
+     show mobile version and hide logo */
+     @media (max-width: 600px) {
+        #logo  {
+          display: none;
+         
+        }
+    }
+
+.label {
+    display: table;
+    margin: auto;
+    color: #012169;
+    font-family: 'EB Garamond';
+    font-size: 200%;
+    clear: both;
+    /* margin-bottom: -40px; */
+}
+
+.respTableElem {
+    overflow-x:auto;
+}
+
+.dataTable {
+    text-align: center;
+    table-layout: fixed;
+    width: 100%;
+    border-color: #012169;
+}
+
+.tableHeaders {
+    font-family: 'EB Garamond';
+    background-color: lightgray;
+}
+
+
+.tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    /* top: 150%;
+    left: 50%; */
+    margin-left: -60px;
+    margin-top: 17px;
+    padding-left:10px;
+    padding-right: 10px;
+  }
+  
+
+td:hover span.tooltiptext {
+    visibility: visible;
+  }
+
+.tooltiptext::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    margin-top: 10px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent black transparent;
+  }
+ 
+
+th {
+    background-color: #012169;
+    color: white;
+}
+
+td {
+    width: 33.33%;
+}
+
+.topIps {
+    text-align: center;
+	list-style-position: inside;
+	color: black;
+	font-size: 150%;
+	width: 50%;
+}
+
+.allIps {
+    text-align: center;
+    list-style-position: inside;
+    color: black;
+    font-size: 150%;
+    width: 50%;
+}
+
+.domains {
+    text-align: center;
+    list-style-position: inside;
+    color: black;
+    font-size: 150%;
+}
+
+div.topIps, div.allIps {
+    float: left;
+    padding: 50px;
+}
+
+
+#changeBtn{
+    background-color: #012169;
+    color: white;
+    border-radius: 12px;
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#changeBtn:hover {
+    background-color: white;
+    color:#012169;
+    cursor: pointer;
+}
+
+.changeInfo {
+    text-align: center;
+    
+}
+
+.background {
+    overflow: hidden;
+}
+
+footer {
+    display: block;
+    position: relative;
+    left: 0;
+    right:0;
+    bottom:0;
+    margin-top: 6em;
+    width: 100%;
+    text-align: center;
+    line-height: 3rem;
+    color: white;
+    background-color: #012169;
+    width: 100%;
+    font-family: 'EB Garamond';
+    font-size: 1.05rem;
+}
+
+/* styling for recent attacks table */
+.fixed_header{
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.fixed_header tbody{
+  display:block;
+  width: 100%;
+  overflow: auto;
+  height: 400px;
+}
+
+.fixed_header thead tr {
+   display: block;
+}
+
+.fixed_header thead {
+  background: #012169;
+  color:#fff;
+  width: 100%;
+  text-align: center;
+  margin: auto;
+}
+
+.fixed_header th, .fixed_header td {
+  padding: 5px;
+  text-align: center;
+  width: 400px;
+}

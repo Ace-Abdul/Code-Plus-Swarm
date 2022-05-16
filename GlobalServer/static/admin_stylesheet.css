@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css?family=EB+Garamond:400,400i,700');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700');
+
+
+#pageTitle {
+    /* background-color: #1507cf;
+    color: white;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 6rem;
+    line-height: 6rem; */
+    background-color:#012169;
+    background-repeat: no-repeat;
+    color: white;
+    text-align: left;
+    font-family: 'EB Garamond';
+    font-size: 3rem;
+    width: auto;
+    height: 70px;
+    padding-left:15px;
+    line-height: 70px;
+    margin-top:0;
+}
+
+div{
+    min-width:960px;
+}
+
+#pageTitle>span{
+    padding-left: 25px;
+}
+
+#logo {
+    height: auto;
+    width: 100px;
+    padding-bottom: 17px;  
+}
+
+.genTokenForm {
+    text-align: center;
+    font-family: 'Open Sans';
+}
+
+
+.inputForms {
+    background-color: lightgray;
+}
+
+#text:hover {
+    background-color: #b3b3b3;
+}
+#email:hover {
+    background-color: #b3b3b3;
+}
+
+#text {
+    width: 200px;
+}
+#email {
+    width: 200px;
+}
+
+#tokenBtn {
+    background-color: #012169;
+    color: white;
+    border-radius: 12px;
+    font-size: 1.5rem;
+
+}
+#tokenBtn:hover{
+    background-color: white;
+    color: #012169;
+}
+
+#tokenBtn:active {
+    background-color: #012169;
+    color: white;
+    border-radius: 12px;
+    font-size: 1.5rem;
+}
+
+.respTableElem {
+    overflow-x:auto;
+}
+
+.dataTable{
+    float: center;
+    text-align: center;
+    width: 100%;
+    border-color: #012169;
+    
+}
+
+.tableHeaders {
+    text-align: center;
+    width: 100%;
+    font-family: 'Open Sans';
+    background-color: lightgray;
+}
+
+.headerName {
+    text-align: center;
+}
+
+
+tr th {
+    height: 35px;
+    background-color: #012169;
+    color: white;
+    text-align: center;
+  }
+
+#delBtn {
+    background-color:  rgb(177, 8, 8);
+    font-family: 'Open Sans';
+    color: white;
+}
+
+
+#delBtn:hover {
+    background-color: rgb(121, 23, 10);
+}
+
+tr input{
+    width: 90%;
+    font-family: 'Open Sans';
+    text-align: center
+}
+
+tr input:hover{
+    background-color:darkgray
+}
+
+.bi{
+    color: white;
+    font-family: 'Open Sans';
+    font-size: 1.5rem;
+    padding-left: 20px;
+}
+
+.bi:hover{
+    color: #0084ff;
+    text-decoration: none;
+}
+.changeInfo {
+    display: block;
+    position: relative;
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: -50px;
+}
+
+ #changeBtn{
+    background-color: #012169;
+    color: white;
+    text-align: center;
+    border-radius: 12px;
+    font-size: 17px;
+    font-family: 'Open Sans';
+    width: 200px;
+    padding: 0 0 0 0;
+}
+
+#changeBtn:hover {
+    background-color: white;
+    color:#012169;
+    cursor: pointer;
+}
+
+button:nth-of-type(1) {
+    background-color: #083fbd;
+    font-family: 'Open Sans';
+    color:white;
+    padding-right: 22px;
+    width: 100%;
+}
+
+button:nth-of-type(1):hover {
+    background-color:#012169;
+    color:white;
+    
+}
+
+.glyphicon glyphicon-trash {
+    background-color: gray;
+    font-family: 'Open Sans';
+    width: 100%;
+    padding-right: 22px;
+}
+.changeInfo {
+    display: block;
+    position: relative;
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: -50px;
+}
+
+ #changeBtn{
+    background-color: #012169;
+    color: white;
+    text-align: center;
+    border-radius: 12px;
+    font-size: 17px;
+    font-family: 'Open Sans';
+    width: 200px;
+    padding: 0 0 0 0;
+}
+
+#changeBtn:hover {
+    background-color: white;
+    color:#012169;
+    cursor: pointer;
+}
+#actions{
+    width: 120px;
+}
+
+footer {
+    display: block;
+    position: relative;
+    left: 0;
+    right:0;
+    bottom:0;
+    margin-top: 6em;
+    width: 100%;
+    text-align: center;
+    line-height: 5rem;
+    color: white;
+    background-color: #012169;
+    width: 100%;
+    font-family: 'EB Garamond';
+    font-size: 1.75rem;
+}
