@@ -6,7 +6,4 @@ For the local user server, pfSense will likely need to come preinstalled with th
 
 For the global admin server, shell scripts and Python scripts will automate installing and pulling IP addresses from CIF and setting up a global server. The IP list updates every minute to give users the most protection. Users should be able to access this global server with their individual authentication token to see the malicious IP list. There will also be an admin interface, where admin will be able to generate tokens for approved home users to access the global server. Admin will also be able to add co-admins and modify users' information, such as password and token.
 
-
-![Updated_Diagram](/uploads/a07fb9da9bc3a273d45f1226ab347859/Updated_Diagram.png)
-
 Students: Ace Abdul, Sonya Patel, Brooks Robinson, Connie Vi, and Eric Xie
